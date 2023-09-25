@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { linkRegex, ruLetters, enLetters } = require('../utils/constants')
+const { linkRegex, ruLetters, enLetters } = require('../utils/constants');
 
 const movieSchema = new mongoose.Schema({
   country: {
@@ -85,4 +85,6 @@ const movieSchema = new mongoose.Schema({
       message: 'Название фильма должно быть на английском языке.',
     },
   },
-})
+});
+
+module.exports = mongoose.model('movie', movieSchema);
