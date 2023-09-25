@@ -1,7 +1,11 @@
 const jwt = require('jsonwebtoken');
 const AuthorizationError = require('../errors/authorizationError');
 
-const { SECRET_KEY = 'movies' } = process.env;
+let { JWT_SECRET } = process.env;
+
+if (process.env.NODE_ENV !== 'production') {
+  JWT_SECRET = 'dev';
+}
 
 module.exports = (req, res, next) => {
   const { authorization } = req.headers;
@@ -15,7 +19,7 @@ module.exports = (req, res, next) => {
   let payload;
 
   try {
-    payload = jwt.verify(token, SECRET_KEY);
+    payload = jwt.verify(token, JWT_SECRET);
   } catch (err) {
     next(new AuthorizationError('Войдите используя почту и пароль.'));
     return;

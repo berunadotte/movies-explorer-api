@@ -6,7 +6,11 @@ const BadRequestError = require('../errors/badRequestError');
 const ConflictError = require('../errors/conflictError');
 const NotFoundError = require('../errors/notFoundError');
 
-const { SECRET_KEY = 'movies' } = process.env;
+let { JWT_SECRET } = process.env;
+
+if (process.env.NODE_ENV !== 'production') {
+  JWT_SECRET = 'dev';
+}
 
 const getUser = (req, res, next) => {
   User.findById(req.user._id)
@@ -42,7 +46,7 @@ const login = (req, res, next) => {
   const { email, password } = req.body;
   User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, SECRET_KEY, {
+      const token = jwt.sign({ _id: user._id }, JWT_SECRET, {
         expiresIn: '7d',
       });
 

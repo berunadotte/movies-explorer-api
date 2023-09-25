@@ -51,7 +51,8 @@ const deleteMovie = (req, res, next) => {
     .then((movie) => {
       const owner = movie.owner.toString();
       if (req.user._id === owner) {
-        movie.deleteOne()
+        movie
+          .deleteOne()
           .then(() => {
             res.send(movie);
           })

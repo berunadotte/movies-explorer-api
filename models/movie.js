@@ -52,7 +52,8 @@ const movieSchema = new mongoose.Schema({
         const urlPattern = linkRegex;
         return urlPattern.test(url);
       },
-      message: 'Не правильная ссылка на миниатюрное изображения постера к фильму.',
+      message:
+        'Не правильная ссылка на миниатюрное изображения постера к фильму.',
     },
   },
   owner: {

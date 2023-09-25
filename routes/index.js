@@ -6,20 +6,32 @@ const { login, createUser } = require('../controllers/users');
 const auth = require('../middlewares/auth');
 const NotFoundError = require('../errors/notFoundError');
 
-router.post('/signin', celebrate({
-  body: Joi.object().keys({
-    email: Joi.string().required().email({ tlds: { allow: false } }),
-    password: Joi.string().required(),
+router.post(
+  '/signin',
+  celebrate({
+    body: Joi.object().keys({
+      email: Joi.string()
+        .required()
+        .email({ tlds: { allow: false } }),
+      password: Joi.string().required(),
+    }),
   }),
-}), login);
+  login,
+);
 
-router.post('/signup', celebrate({
-  body: Joi.object().keys({
-    name: Joi.string().min(2).max(30),
-    email: Joi.string().required().email({ tlds: { allow: false } }),
-    password: Joi.string().required(),
+router.post(
+  '/signup',
+  celebrate({
+    body: Joi.object().keys({
+      name: Joi.string().min(2).max(30),
+      email: Joi.string()
+        .required()
+        .email({ tlds: { allow: false } }),
+      password: Joi.string().required(),
+    }),
   }),
-}), createUser);
+  createUser,
+);
 
 router.use('/', auth);
 
