@@ -39,8 +39,7 @@ const updateUser = (req, res, next) => {
       }
       else if (err.name === 'ValidationError') {
         next(new BadRequestError('Введенные данные не корректны.'));
-      }
-      else {
+      } else {
         next(err);
       }
     });
