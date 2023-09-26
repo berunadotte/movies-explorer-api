@@ -6,7 +6,10 @@ const NotFoundError = require('../errors/notFoundError');
 
 const getMovies = (req, res, next) => {
   Movie.find({})
-    .then((movies) => res.send(movies))
+    .then((movies) => {
+      const myMovies = movies.filter((movie) => req.user._id === movie.owner.toString());
+      res.send(myMovies);
+    })
     .catch(next);
 };
 
