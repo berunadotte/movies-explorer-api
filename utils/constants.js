@@ -9,14 +9,11 @@ const imgRegex = /^https?:\/\/(?:[a-zA-Z0-9_-]+\.)+[a-zA-Z]{2,9}(?:\/[^/]+)*\/[^
 
 const linkRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/;
 
-const ruLetters = /[а-яА-ЯёЁ]/;
-
-const enLetters = /[a-zA-Z]/;
+const movieName = /[а-яА-ЯёЁa-zA-Z0-9]/;
 
 module.exports = {
   imgRegex,
   linkRegex,
-  ruLetters,
-  enLetters,
+  movieName,
   limiter,
 };

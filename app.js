@@ -4,9 +4,9 @@ const { errors } = require('celebrate');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const express = require('express');
+const helmet = require('helmet');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { limiter } = require('./utils/constants');
-const helmet = require('helmet');
 
 const { PORT = 3000, DB_CONN = 'mongodb://127.0.0.1:27017/bitfilmsdb' } =
   process.env;
