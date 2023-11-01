@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { linkRegex, ruLetters, enLetters } = require('../utils/constants');
+const { linkRegex, movieName } = require('../utils/constants');
 
 const movieSchema = new mongoose.Schema({
   country: {
@@ -69,7 +69,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: (name) => {
-        const namePattern = ruLetters;
+        const namePattern = movieName;
         return namePattern.test(name);
       },
       message: 'Название фильма должно быть на русском языке.',
@@ -80,7 +80,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: (name) => {
-        const namePattern = enLetters;
+        const namePattern = movieName;
         return namePattern.test(name);
       },
       message: 'Название фильма должно быть на английском языке.',
